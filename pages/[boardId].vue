@@ -14,7 +14,7 @@
     </template>
     <h1 class="text-3xl font-semibold mb-4 inline-block">{{ data.name }}</h1>
 
-    <ListContainer :lists="data.lists" :board-id="boardId" />
+    <ListContainer :lists="data.lists" :board-id="boardId.toString()" />
     <USlideover v-model="showListCreate">
       <OverlayHeader
         :on-click="() => (showListCreate = false)"
@@ -57,6 +57,8 @@ const actionBoard = () => {
   refresh();
   showListCreate.value = false;
 };
+
+provide("refresh-board", refresh);
 
 const selectedList = ref<ListDocument | undefined>();
 const showListCreate = ref<boolean>(false);

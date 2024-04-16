@@ -24,7 +24,6 @@
           :on-update="
             () => {
               actionBoard();
-              selectedBoard = undefined;
             }
           "
         />

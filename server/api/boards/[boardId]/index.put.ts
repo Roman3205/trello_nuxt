@@ -5,11 +5,12 @@ import Board from "~/server/models/Board.model";
 export default defineEventHandler(async (event) => {
   try {
     const userId = event.context.userId;
+    const boardId = getRouterParam(event, "boardId");
+
     const body = await readBody(event);
 
     Validator.validateSchema(boardSchema.partial(), body);
 
-    const boardId = getRouterParam(event, "boardId");
     const board = await Board.findOneAndUpdate(
       {
         _id: boardId,

@@ -26,4 +26,10 @@ export default defineNuxtConfig({
       type: "authjs",
     },
   },
+  // plugins: [
+  //   {
+  //     src: "~/plugins/quill.plugin.ts",
+  //     ssr: false,
+  //   },
+  // ],
 });

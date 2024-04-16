@@ -13,11 +13,11 @@ export default defineEventHandler(async (event) => {
       return;
     }
 
-    if (!session) {
+    if (!session || !session.user) {
       throw createError({ statusMessage: "Unauthenticated", statusCode: 403 });
     }
     // @ts-expect-error
-    event.context.userId = session?.user?._id;
+    event.context.userId = session.user._id;
   } catch (e) {
     throw createError({
       statusCode: 400,

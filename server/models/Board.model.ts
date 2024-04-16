@@ -4,7 +4,7 @@ import { ListDocument } from "./List.model";
 
 export interface BoardDocument extends Document {
   name: string;
-  lists: string[] | ListDocument[];
+  lists: ListDocument[];
   owner: string;
   coverImage: string;
 }

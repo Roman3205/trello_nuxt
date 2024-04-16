@@ -54,9 +54,6 @@ watchEffect(() => {
   if (props.type === "update" && props.initialData) {
     form.name = props.initialData.name;
     form.coverImage = props.initialData.coverImage;
-  } else if (props.type === "create") {
-    form.name = undefined;
-    form.coverImage = undefined;
   }
 });
 
@@ -87,7 +84,7 @@ const handleForm = async (
     props.onCreate?.();
 
     useToast().add({
-      title: "Boards updated",
+      title: "Boards created",
     });
   } catch (e) {
   } finally {
