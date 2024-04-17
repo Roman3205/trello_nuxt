@@ -3,6 +3,6 @@ import { z } from "zod";
 export default z.object({
   name: z.string().min(3).max(255),
   description: z.string().min(1).max(255).optional(),
-  coverImage: z.string().min(1).max(255).optional(), // nullable was deleted
+  coverImage: z.string().min(1).max(255).optional().nullable(), // nullable was deleted
   lists: z.array(z.string()).optional(),
 });

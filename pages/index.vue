@@ -39,6 +39,10 @@ definePageMeta({
   middleware: "auth",
 });
 
+useHead({
+  title: "Boards",
+});
+
 const overlayTitle = computed(() =>
   selectedBoard.value ? "Update board" : "Create a board"
 );
@@ -51,6 +55,8 @@ const actionBoard = () => {
 const formType = computed(() => (selectedBoard.value ? "update" : "create"));
 
 const { data, refresh } = useFetch<BoardDocument[]>("/api/boards");
+
+provide("refresh-boards", refresh);
 
 const showCreateBoard = ref<boolean>(false);
 

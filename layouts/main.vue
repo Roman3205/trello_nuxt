@@ -49,7 +49,9 @@ const dropDownItems = ref([
     {
       label: "Billing",
       icon: "i-heroicons-credit-card",
-      click: () => {},
+      click: () => {
+        navigateTo("/unavailable");
+      },
     },
   ],
   [

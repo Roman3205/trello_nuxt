@@ -11,6 +11,27 @@ export const useCard = () => {
         method: "PUT",
         body: data,
       });
+
+      return useToast().add({
+        title: "Card updated",
+      });
+    } catch (e: any) {
+      return useToast().add({
+        title: "Error",
+        description: e.message || "Something went wrong",
+      });
+    }
+  };
+
+  const destroy = async (listId: string, cardId: string) => {
+    try {
+      await $fetch(`/api/lists/${listId}/cards/${cardId}`, {
+        method: "DELETE",
+      });
+
+      return useToast().add({
+        title: "Card deleted",
+      });
     } catch (e: any) {
       return useToast().add({
         title: "Error",
@@ -21,5 +42,6 @@ export const useCard = () => {
 
   return {
     update,
+    destroy,
   };
 };

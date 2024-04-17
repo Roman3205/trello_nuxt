@@ -1,5 +1,11 @@
 <template>
   <Auth title="Create an account">
+    <template #subheading>
+      <p class="mt-2">
+        Already have an account?
+        <NuxtLink class="text-primary-500" to="login">Login Now</NuxtLink>
+      </p>
+    </template>
     <UForm
       @submit="signUpHandler"
       :state="form"

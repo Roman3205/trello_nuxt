@@ -21,12 +21,12 @@
         :title="selectedList ? 'Update list' : 'Create list'"
       ></OverlayHeader>
       <div class="p-4">
-        <List
+        <ListForm
           :type="selectedList ? 'update' : 'create'"
           :initial-data="selectedList"
           :board-id="boardId.toString()"
           :on-create="actionBoard"
-        ></List>
+        ></ListForm>
       </div>
     </USlideover>
   </NuxtLayout>
@@ -52,6 +52,11 @@ if (!data.value) {
     message: "Board not found",
   });
 }
+
+useHead({
+  title: data.value.name,
+  titleTemplate: "%s - Boards",
+});
 
 const actionBoard = () => {
   refresh();

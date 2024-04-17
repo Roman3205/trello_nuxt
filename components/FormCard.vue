@@ -13,9 +13,28 @@
         <QuillEditor content-type="html" v-model:content="form.description" />
       </ClientOnly>
     </UFormGroup>
-    <UButton :disabled="blockButton" :loading="blockButton" block type="submit">
-      {{ submitText }}
-    </UButton>
+    <div class="flex flex-col gap-3">
+      <UButton
+        :disabled="blockButton"
+        :loading="blockButton"
+        variant="soft"
+        color="red"
+        v-if="initialData && type === 'update'"
+        block
+        @click.prevent.stop="handleDestroy"
+        type="submit"
+      >
+        Delete
+      </UButton>
+      <UButton
+        :disabled="blockButton"
+        :loading="blockButton"
+        block
+        type="submit"
+      >
+        {{ submitText }}
+      </UButton>
+    </div>
   </UForm>
 </template>
 
@@ -45,6 +64,15 @@ const form = reactive<Partial<CardDocument>>({
   title: undefined,
   description: undefined,
 });
+
+const { destroy } = useCard();
+
+const handleDestroy = async () => {
+  blockButton.value = true;
+  await destroy(props.listId, props.initialData?._id);
+  props.onUpdate?.();
+  blockButton.value = false;
+};
 
 watchEffect(() => {
   if (props.type === "update" && props.initialData) {
@@ -93,4 +121,8 @@ const handleSubmit = async (
 };
 </script>
 
-<style></style>
+<style>
+.ql-editor {
+  @apply h-32;
+}
+</style>

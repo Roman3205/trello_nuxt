@@ -8,6 +8,7 @@
           <Logo />
         </div>
         <h1 class="font-bold text-xl mt-4">{{ title }}</h1>
+        <slot name="subheading"></slot>
       </div>
       <UCard class="mt-8">
         <slot />
@@ -27,15 +28,21 @@ defineProps<{
 .right {
   background: linear-gradient(0.45deg, #22c55e, #10b981, #84cc16, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 15s ease-in-out infinite;
+  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
+  25% {
+    background-position: 50% 0%;
+  }
   50% {
     background-position: 100% 50%;
+  }
+  75% {
+    background-position: 100% 100%;
   }
   100% {
     background-position: 0% 50%;

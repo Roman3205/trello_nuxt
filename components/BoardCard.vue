@@ -10,13 +10,19 @@
         class="absolute w-full h-full z-[2] bg-gradient-to-b from-black/85 to-transparent"
       ></div>
     </div>
-    <div class="flex items-center gap-2 absolute left-0 z-10 top-0 py-2 px-4">
+    <div
+      class="flex items-center gap-2 left-0 z-10 top-0 py-2 px-4"
+      :class="{
+        absolute: board.coverImage,
+        'justify-between': !board.coverImage,
+      }"
+    >
       <NuxtLink
         :to="{
-          name: 'boardId',
+          name: 'board-boardId',
           params: { boardId: board._id },
         }"
-        class="block font-semibold text-white"
+        class="block font-semibold text-gray-700 dark:text-white"
         >{{ board.name }}</NuxtLink
       >
       <UDropdown :items="actions">
@@ -36,7 +42,9 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// const refreshBoards = inject("refresh-boards") as () => void;
+const { destroy } = useBoard();
+
+const refreshBoards = inject("refresh-boards") as () => void;
 
 const actions = ref([
   [
@@ -52,7 +60,10 @@ const actions = ref([
     {
       label: "Delete",
       icon: "i-heroicons-trash",
-      click: () => {},
+      click: async () => {
+        await destroy(props.board._id);
+        refreshBoards();
+      },
     },
   ],
 ]);
