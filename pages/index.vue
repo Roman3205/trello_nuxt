@@ -34,7 +34,6 @@
 
 <script lang="ts" setup>
 import type { BoardDocument } from "~/server/models/Board.model";
-
 definePageMeta({
   middleware: "auth",
 });

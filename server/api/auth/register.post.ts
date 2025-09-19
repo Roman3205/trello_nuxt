@@ -1,12 +1,9 @@
-import { Validator } from "#nuxt-server-utils";
 import signUpSchema from "~/schemas/signUpSchema";
 import UserModel from "~/server/models/User.model";
 
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
-
-    Validator.validateSchema(signUpSchema, body);
+    const body = await readValidatedBody(event, signUpSchema.parse);
 
     const user = await UserModel.create(body);
 

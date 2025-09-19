@@ -3,9 +3,9 @@
     <NuxtLayout>
       <NuxtLoadingIndicator :height="5" style="opacity: 100" />
       <NuxtPage />
-      <UNotifications />
     </NuxtLayout>
-  </div>
+    <UNotifications />
+</div>
 </template>
 
 <script lang="ts" setup></script>

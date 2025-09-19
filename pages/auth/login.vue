@@ -3,7 +3,9 @@
     <template #subheading>
       <p class="mt-2">
         Dont have an account?
-        <NuxtLink class="text-primary-500" to="signup">Signup Now</NuxtLink>
+        <NuxtLink class="text-primary-500" to="/auth/signup"
+          >Signup Now</NuxtLink
+        >
       </p>
     </template>
     <UForm
@@ -25,6 +27,7 @@
         type="submit"
         >Sign In</UButton
       >
+
     </UForm>
   </Auth>
 </template>
@@ -63,7 +66,7 @@ const logInHandler = async (
       redirect: false,
     });
     if (error) {
-      useToast().add({
+      return useToast().add({
         title: "Error!",
         description: "Bad auth",
         timeout: 2000,
@@ -76,9 +79,10 @@ const logInHandler = async (
       timeout: 2000,
     });
 
-    return navigateTo("/");
+    // await navigateTo('/')
+    return navigateTo('/')
   } catch (e) {
-    useToast().add({
+    return useToast().add({
       title: "Error!",
       description: e.message || "Something went wrong",
       timeout: 2000,

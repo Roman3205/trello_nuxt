@@ -8,8 +8,8 @@
     </template>
     <UForm
       @submit="signUpHandler"
-      :state="form"
       :schema="signUpSchema"
+      :state="form"
       class="flex flex-col gap-5"
     >
       <UFormGroup name="name" label="Name">
@@ -76,11 +76,12 @@ const signUpHandler = async (
       timeout: 2000,
     });
 
-    useRouter().push({
-      name: "auth-login",
-    });
+    // useRouter().push({
+    //   name: "auth-login",
+    // });
+    return navigateTo({name: 'auth-login'})
   } catch (e: any) {
-    useToast().add({
+    return useToast().add({
       title: "Error!",
       description: e.message || "Something went wrong",
       timeout: 2000,

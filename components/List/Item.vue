@@ -132,12 +132,10 @@ watchEffect(() => {
 });
 
 const { update: updateCard } = useCard();
-
 const handleCardChange = async (e: any) => {
   try {
     if (e.added) {
       const { element: card } = e.added;
-
       await updateCard(card.list, card._id, {
         list: props.list._id,
       });

@@ -38,7 +38,6 @@ import type { ListDocument } from "~/server/models/List.model";
 
 const { boardId } = useRoute().params;
 // setPageLayout("main");
-
 const { data, refresh } = await useFetch<BoardDocument>(
   `/api/boards/${boardId}`,
   {

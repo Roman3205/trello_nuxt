@@ -4,12 +4,11 @@ export default defineNuxtConfig({
   ssr: true,
   modules: [
     "@nuxt/ui",
-    "nuxt-server-utils",
     "@sidebase/nuxt-auth",
     "@nuxt/image",
   ],
-  nuxtServerUtils: {
-    mongodbUri: process.env.MONGODB_URI,
+  devServer: {
+    port: 3000,
   },
   runtimeConfig: {
     public: {
@@ -19,12 +18,20 @@ export default defineNuxtConfig({
       secret: process.env.AUTH_SECRET,
       origin: process.env.AUTH_ORIGIN,
     },
+    mongodb: process.env.MONGODB_URI
   },
+
+  routeRules: {
+    "/api/**": {
+      cors: true,
+    },
+  },
+
   auth: {
-    baseURL: process.env.AUTH_ORIGIN,
     provider: {
       type: "authjs",
     },
+    baseURL: process.env.AUTH_ORIGIN,
   },
   // plugins: [
   //   {

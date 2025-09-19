@@ -22,7 +22,7 @@
           name: 'board-boardId',
           params: { boardId: board._id },
         }"
-        class="block font-semibold text-gray-700 dark:text-white"
+        class="block font-semibold text-white"
         >{{ board.name }}</NuxtLink
       >
       <UDropdown :items="actions">

@@ -1,4 +1,3 @@
-import { Validator } from "#nuxt-server-utils";
 import cardSchema from "~/schemas/cardSchema";
 import CardModel from "~/server/models/Card.model";
 import listModel from "~/server/models/List.model";

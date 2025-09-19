@@ -1,7 +1,5 @@
-import { Validator } from "#nuxt-server-utils";
 import cardSchema from "~/schemas/cardSchema";
 import CardModel from "~/server/models/Card.model";
-import listModel from "~/server/models/List.model";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -9,9 +7,8 @@ export default defineEventHandler(async (event) => {
     const listId = getRouterParam(event, "listId");
     const userId = event.context.userId;
 
-    const body = await readBody(event);
+    const body = await readValidatedBody(event, cardSchema.partial().parse);
 
-    Validator.validateSchema(cardSchema.partial(), body);
 
     const card = await CardModel.findOneAndUpdate(
       {

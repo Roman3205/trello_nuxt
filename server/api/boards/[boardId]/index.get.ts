@@ -7,12 +7,13 @@ export default defineEventHandler(async (event) => {
 
     const boardId = getRouterParam(event, "boardId");
 
-    const board = await Board.findOne({ _id: boardId, owner: userId }).populate(
-      {
-        path: "lists",
-        model: listModel,
-      }
-    );
+    const board = await Board.findOne({
+      _id: boardId,
+      owner: userId,
+    }).populate({
+      path: "lists",
+      model: listModel,
+    });
 
     return board;
   } catch (e) {
